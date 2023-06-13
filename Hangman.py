@@ -1,16 +1,13 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
+!pip install random-word
 import random
 from random_word import RandomWords
-r = RandomWords()
-secret_word = r.get_random_word()
 
 score = {"win": 0, "lost": 0}
 
+def getword():
+  global secret_word
+  r = RandomWords()
+  secret_word = r.get_random_word()
 
 def intro():
     print("\nH A N G M A N")
@@ -58,19 +55,23 @@ def show_guessed_letters(letter, word_to_guess, guessed):
 
 
 def evaluate_result(guessed):
+    global secret_word
     if "-" in guessed:
         score["lost"] += 1
         print()
         print(f"You lost! The word was {secret_word}")
+        getword()
     else:
         score["win"] += 1
         result = "".join(guessed)
         print()
         print(f"You guessed the word {result}!")
         print("You survived!")
+        getword()
 
 
 def play_game():
+    global secret_word
     input_letters = []
     word_to_guess = secret_word
     guessed = ["-"] * len(word_to_guess)
@@ -100,16 +101,3 @@ def show_results():
 
 intro()
 show_menu()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
