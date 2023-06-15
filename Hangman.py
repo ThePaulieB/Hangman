@@ -18,6 +18,7 @@ def show_menu():
         print('Type "play" to play the game, "results" to show the scoreboard, and "exit" to quit:')
         action = input()
         if action == "play":
+            getword()
             play_game()
         elif action == "results":
             show_results()
